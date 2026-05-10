@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amara's Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 50%, #a29bfe 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .bubble {
+            animation: bounce 2s ease-in-out infinite;
+            display: inline-block;
+        }
+        
+        .bubble-1 { animation-delay: 0s; }
+        .bubble-2 { animation-delay: 0.15s; }
+        .bubble-3 { animation-delay: 0.3s; }
+        .bubble-4 { animation-delay: 0.45s; }
+        .bubble-5 { animation-delay: 0.6s; }
+        
+        @keyframes elephant-drift {
+            0%   { transform: translateX(900px); }
+            100% { transform: translateX(-220px); }
+        }
+        @keyframes elephant-bob {
+            0%, 100% { transform: translateY(0px); }
+            50%       { transform: translateY(-8px); }
+        }
+        .elephant-stage {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .elephant-floater {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            animation: elephant-drift 20s linear infinite;
+            pointer-events: none;
+        }
+        .elephant-bobber {
+            animation: elephant-bob 3s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes water-spray-pulse {
+            0%, 100% { opacity: 0.9; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.1); }
+        }
+        .water-spray {
+            animation: water-spray-pulse 0.6s ease-in-out infinite;
+            transform-origin: 15px 178px;
+        }
+
+        .parade-stage {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            margin: 30px 0;
+            height: 200px;
+        }
+
+        @keyframes parade-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .parade-track {
+            display: flex;
+            gap: 30px;
+            align-items: flex-end;
+            width: max-content;
+            animation: parade-scroll 45s linear infinite;
+            padding-left: 30px;
+        }
+
+        .parade-track svg {
+            display: block;
+            flex-shrink: 0;
+        }
+        
+        .bubble-letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            font-size: 56px;
+            font-weight: 700;
+            margin: 0 5px;
+            border: 3px solid;
+            position: relative;
+            font-family: 'Fredoka', sans-serif;
+            background: white;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6);
+        }
+        
+        .bubble-1 {
+            background-color: #FF6B9D;
+            border-color: #FF4081;
+        }
+        
+        .bubble-1 .text {
+            background: linear-gradient(135deg, #FF0080, #FF1493, #E91E63);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px white) drop-shadow(-2px -2px 0px white) drop-shadow(2px -2px 0px white) drop-shadow(-2px 2px 0px white) drop-shadow(0 0 4px rgba(255, 0, 128, 0.8));
+        }
+        
+        .bubble-2 {
+            background-color: #FFB347;
+            border-color: #FF9500;
+        }
+        
+        .bubble-2 .text {
+            background: linear-gradient(135deg, #FF4500, #FF6347, #DC143C);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px white) drop-shadow(-2px -2px 0px white) drop-shadow(2px -2px 0px white) drop-shadow(-2px 2px 0px white) drop-shadow(0 0 4px rgba(255, 69, 0, 0.8));
+        }
+        
+        .bubble-3 {
+            background-color: #4ECDC4;
+            border-color: #2BA99D;
+        }
+        
+        .bubble-3 .text {
+            background: linear-gradient(135deg, #008B8B, #00CED1, #1E90FF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px white) drop-shadow(-2px -2px 0px white) drop-shadow(2px -2px 0px white) drop-shadow(-2px 2px 0px white) drop-shadow(0 0 4px rgba(0, 206, 209, 0.8));
+        }
+        
+        .bubble-4 {
+            background-color: #95E1D3;
+            border-color: #6FD4B8;
+        }
+        
+        .bubble-4 .text {
+            background: linear-gradient(135deg, #228B22, #00CC88, #00FF7F);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px white) drop-shadow(-2px -2px 0px white) drop-shadow(2px -2px 0px white) drop-shadow(-2px 2px 0px white) drop-shadow(0 0 4px rgba(34, 139, 34, 0.8));
+        }
+        
+        .bubble-5 {
+            background-color: #FFD93D;
+            border-color: #FFC107;
+        }
+        
+        .bubble-5 .text {
+            background: linear-gradient(135deg, #9932CC, #FF1493, #FF6347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px white) drop-shadow(-2px -2px 0px white) drop-shadow(2px -2px 0px white) drop-shadow(-2px 2px 0px white) drop-shadow(0 0 4px rgba(153, 50, 204, 0.8));
+        }
+
+        .bird-stage { width: 100%; height: 80px; overflow: hidden; position: relative; margin: 10px 0; }
+        @keyframes bird-fly { 0% { transform: translateX(-100px); } 100% { transform: translateX(900px); } }
+        @keyframes wing-flap { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.4); } }
+        .bird { position: absolute; animation: bird-fly 14s linear infinite; }
+        .bird-a { animation-duration: 18s; animation-delay: -5s; top: 30px; }
+        .bird-b { animation-duration: 16s; animation-delay: -9s; top: 10px; }
+        .bird-c { animation-duration: 20s; animation-delay: -2s; top: 45px; }
+        .bird-d { animation-duration: 17s; animation-delay: -12s; top: 25px; }
+        .bird-e { animation-duration: 19s; animation-delay: -7s; top: 5px; }
+        .bird-f { animation-duration: 15s; animation-delay: -14s; top: 50px; }
+        .bird-g { animation-duration: 21s; animation-delay: -3s; top: 35px; }
+        .bird-h { animation-duration: 16s; animation-delay: -10s; top: 15px; }
+        .wing-anim { animation: wing-flap 0.4s ease-in-out infinite; transform-origin: center; }
+
+        .pond-stage { width: 100%; height: 140px; position: relative; overflow: hidden; margin: 10px 0; }
+        @keyframes fish-jump-1 { 0%, 100% { transform: translate(0, 50px); opacity: 0; } 10% { opacity: 1; } 50% { transform: translate(60px, -10px) rotate(-15deg); opacity: 1; } 90% { opacity: 1; } 100% { transform: translate(120px, 50px) rotate(20deg); opacity: 0; } }
+        @keyframes fish-jump-2 { 0%, 100% { transform: translate(0, 50px); opacity: 0; } 15% { opacity: 1; } 50% { transform: translate(-50px, 0px) rotate(15deg); opacity: 1; } 85% { opacity: 1; } 100% { transform: translate(-100px, 50px) rotate(-20deg); opacity: 0; } }
+        @keyframes fish-jump-3 { 0%, 100% { transform: translate(0, 50px); opacity: 0; } 20% { opacity: 1; } 50% { transform: translate(40px, 5px) rotate(-10deg); opacity: 1; } 80% { opacity: 1; } 100% { transform: translate(80px, 50px) rotate(25deg); opacity: 0; } }
+        .fish-1 { position: absolute; left: 15%; top: 30px; animation: fish-jump-1 4s ease-in-out infinite; }
+        .fish-2 { position: absolute; left: 45%; top: 30px; animation: fish-jump-2 5s ease-in-out infinite; animation-delay: -1.5s; }
+        .fish-3 { position: absolute; left: 70%; top: 35px; animation: fish-jump-3 4.5s ease-in-out infinite; animation-delay: -3s; }
+        @keyframes fish-jump-4 { 0%, 100% { transform: translate(0, 50px); opacity: 0; } 12% { opacity: 1; } 50% { transform: translate(-40px, -5px) rotate(12deg); opacity: 1; } 88% { opacity: 1; } 100% { transform: translate(-90px, 50px) rotate(-18deg); opacity: 0; } }
+        @keyframes fish-jump-5 { 0%, 100% { transform: translate(0, 50px); opacity: 0; } 18% { opacity: 1; } 50% { transform: translate(50px, 0px) rotate(-12deg); opacity: 1; } 82% { opacity: 1; } 100% { transform: translate(100px, 50px) rotate(22deg); opacity: 0; } }
+        @keyframes fish-jump-6 { 0%, 100% { transform: translate(0, 50px); opacity: 0; } 14% { opacity: 1; } 50% { transform: translate(-30px, 5px) rotate(18deg); opacity: 1; } 86% { opacity: 1; } 100% { transform: translate(-70px, 50px) rotate(-15deg); opacity: 0; } }
+        .fish-4 { position: absolute; left: 28%; top: 32px; animation: fish-jump-4 5.5s ease-in-out infinite; animation-delay: -2s; }
+        .fish-5 { position: absolute; left: 58%; top: 28px; animation: fish-jump-5 4.2s ease-in-out infinite; animation-delay: -0.8s; }
+        .fish-6 { position: absolute; left: 85%; top: 33px; animation: fish-jump-6 4.8s ease-in-out infinite; animation-delay: -2.5s; }
+        @keyframes ripple { 0% { transform: scale(0.3); opacity: 0.8; } 100% { transform: scale(1.5); opacity: 0; } }
+        .ripple-anim-1 { animation: ripple 4s ease-out infinite; transform-origin: center; }
+        .ripple-anim-2 { animation: ripple 5s ease-out infinite; animation-delay: -1.5s; transform-origin: center; }
+        .ripple-anim-3 { animation: ripple 4.5s ease-out infinite; animation-delay: -3s; transform-origin: center; }
+
+        .fun-section { max-width: 800px; margin: 30px auto; padding: 20px; }
+        .section-title { font-family: 'Fredoka', sans-serif; font-size: 32px; font-weight: 600; text-align: center; margin: 20px 0; color: #6B46C1; }
+        .button-row { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin: 20px 0; }
+        .fun-button { font-family: 'Fredoka', sans-serif; font-size: 20px; font-weight: 600; padding: 18px 28px; border-radius: 30px; border: 4px solid; cursor: pointer; transition: all 0.2s; color: white; box-shadow: 0 4px 0 rgba(0,0,0,0.15); }
+        .fun-button:active { transform: translateY(3px); box-shadow: 0 1px 0 rgba(0,0,0,0.15); }
+        .btn-pink { background: #FF6B9D; border-color: #E91E63; }
+        .btn-orange { background: #FFB347; border-color: #FF9500; }
+        .btn-teal { background: #4ECDC4; border-color: #2BA99D; }
+        .btn-purple { background: #B57EDC; border-color: #8B5CB8; }
+        .btn-yellow { background: #FFD93D; border-color: #FFC107; color: #333; }
+
+        .game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+        .game-card { background: white; border: 4px solid #B57EDC; border-radius: 20px; padding: 20px; }
+        .game-title { font-family: 'Fredoka', sans-serif; font-size: 24px; font-weight: 600; color: #6B46C1; text-align: center; margin-bottom: 15px; }
+        .shape-game-area { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; min-height: 80px; align-items: center; }
+        .clickable-shape { cursor: pointer; transition: transform 0.2s; }
+        .clickable-shape:hover { transform: scale(1.15); }
+        .clickable-shape:active { transform: scale(0.9); }
+        .game-message { text-align: center; font-family: 'Fredoka', sans-serif; font-size: 18px; min-height: 24px; margin-top: 10px; color: #6B46C1; }
+        .color-swatch { width: 60px; height: 60px; border-radius: 50%; border: 3px solid #333; cursor: pointer; transition: transform 0.2s; }
+        .color-swatch:hover { transform: scale(1.1); }
+        .color-target { width: 80px; height: 80px; border-radius: 50%; border: 4px solid #333; margin: 0 auto 10px; }
+
+        .confetti { position: fixed; width: 12px; height: 12px; pointer-events: none; z-index: 1000; }
+        @keyframes confetti-fall { 0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+
+        @media (max-width: 600px) {
+            .game-grid { grid-template-columns: 1fr; }
+            .fun-button { font-size: 16px; padding: 14px 20px; }
+        }
+
+        .music-controls { text-align: center; margin: 20px 0; }
+        .music-button { font-family: 'Fredoka', sans-serif; font-size: 18px; padding: 12px 24px; border-radius: 25px; border: 3px solid #6B46C1; background: white; color: #6B46C1; cursor: pointer; font-weight: 600; }
+        .music-button:hover { background: #6B46C1; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                <div class="bubble bubble-1 bubble-letter"><span class="text">A</span></div>
+                <div class="bubble bubble-2 bubble-letter"><span class="text">M</span></div>
+                <div class="bubble bubble-3 bubble-letter"><span class="text">A</span></div>
+                <div class="bubble bubble-4 bubble-letter"><span class="text">R</span></div>
+                <div class="bubble bubble-5 bubble-letter"><span class="text">A</span></div>
+            </div>
+            <div style="text-align: center; margin-top: 10px; font-size: 28px; font-weight: 500; color: #000; font-family: Arial, sans-serif;">.net</div>
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="fun-button btn-yellow" onclick="spinName()">Spin AMARA!</button>
+            </div>
+        </div>
+        
+        <!-- More content will be added here! -->
+    </div>
+
+    <div style="max-width: 800px; margin: 0 auto;">
+    <div class="bird-stage">
+      <div class="bird bird-a">
+        <svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <g class="wing-anim"><path d="M5 10 Q12 2 20 10 Q28 2 35 10" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <div class="bird bird-b">
+        <svg width="34" height="18" viewBox="0 0 34 18" xmlns="http://www.w3.org/2000/svg">
+          <g class="wing-anim"><path d="M4 9 Q10 2 17 9 Q24 2 30 9" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <div class="bird bird-c">
+        <svg width="44" height="22" viewBox="0 0 44 22" xmlns="http://www.w3.org/2000/svg">
+          <g class="wing-anim"><path d="M5 11 Q13 2 22 11 Q31 2 39 11" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <div class="bird bird-d">
+        <svg width="38" height="20" viewBox="0 0 38 20" xmlns="http://www.w3.org/2000/svg">
+          <g class="wing-anim"><path d="M4 10 Q11 2 19 10 Q27 2 34 10" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <div class="bird bird-e">
+        <svg width="36" height="18" viewBox="0 0 36 18" xmlns="http://www.w3.org/2000/svg">
+          <g class="wing-anim"><path d="M4 9 Q11 2 18 9 Q25 2 32 9" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <div class="bird bird-f">
+        <svg width="42" height="22" viewBox="0 0 42 22" xmlns="http://www.w3.org/2000/svg">
+          <g class="wing-anim"><path d="M5 11 Q13 2 21 11 Q29 2 37 11" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <div class="bird bird-g">
+        <svg width="38" height="20" viewBox="0 0 38 20" xmlns="http://www.w3.org/2000/svg">
+          <g class="wing-anim"><path d="M4 10 Q11 2 19 10 Q27 2 34 10" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+      <div class="bird bird-h">
+        <svg width="40" height="20" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+          <g class="wing-anim"><path d="M5 10 Q12 2 20 10 Q28 2 35 10" stroke="#333" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        </svg>
+      </div>
+    </div>
+    </div>
+
+<div class="parade-stage">
+      <div class="parade-track">
+
+        <svg width="170" height="200" viewBox="0 0 170 200" xmlns="http://www.w3.org/2000/svg" aria-label="elephant">
+          <ellipse cx="95" cy="22" rx="18" ry="20" fill="#FF6B9D"/>
+          <ellipse cx="89" cy="16" rx="5" ry="6" fill="#FF9EC4" opacity="0.6"/>
+          <path d="M95 42 Q93 50 95 58" stroke="#aaa" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="95" cy="43" rx="3" ry="2" fill="#e05090"/>
+          <path d="M95 58 Q85 74 72 104" stroke="#aaa" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+          <ellipse cx="100" cy="145" rx="44" ry="34" fill="#A0A0B0"/>
+          <rect x="68" y="165" width="17" height="30" rx="8" fill="#8A8A9A"/>
+          <rect x="108" y="165" width="17" height="30" rx="8" fill="#8A8A9A"/>
+          <rect x="78" y="168" width="17" height="27" rx="8" fill="#A0A0B0"/>
+          <rect x="99" y="168" width="17" height="27" rx="8" fill="#A0A0B0"/>
+          <path d="M142 135 Q153 139 149 150 Q146 157 149 162" stroke="#8A8A9A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="149" cy="165" rx="4" ry="3" fill="#707080"/>
+          <ellipse cx="75" cy="122" rx="33" ry="30" fill="#A0A0B0"/>
+          <ellipse cx="98" cy="105" rx="20" ry="24" fill="#C0A0B8"/>
+          <ellipse cx="96" cy="106" rx="13" ry="16" fill="#E0C0D0" opacity="0.7"/>
+          <circle cx="62" cy="114" r="5.5" fill="white"/>
+          <circle cx="61" cy="114" r="3.5" fill="#222"/>
+          <circle cx="60" cy="113" r="1.2" fill="white"/>
+          <ellipse cx="70" cy="110" rx="11" ry="8" fill="#B8B8C8" opacity="0.45"/>
+          <path d="M58 142 Q48 152 46 162 Q45 167 50 167" stroke="#F5E6C0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M55 134 Q38 148 26 168 Q18 182 20 192 Q22 200 30 196 Q36 192 32 184" stroke="#A0A0B0" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M55 134 Q38 148 26 168 Q18 182 20 192 Q22 200 30 196 Q36 192 32 184" stroke="#B8B8C8" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+          <path d="M68 144 Q72 152 73 160 Q73 165 68 165" stroke="#F5E6C0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <g class="water-spray">
+            <ellipse cx="22" cy="178" rx="3" ry="5" fill="#7DD4F0" opacity="0.85" transform="rotate(-40 22 178)"/>
+            <ellipse cx="14" cy="172" rx="2.5" ry="4.5" fill="#7DD4F0" opacity="0.75" transform="rotate(-60 14 172)"/>
+            <ellipse cx="10" cy="182" rx="2" ry="4" fill="#A8E4F8" opacity="0.7" transform="rotate(-20 10 182)"/>
+            <circle cx="8" cy="170" r="2.5" fill="#7DD4F0" opacity="0.65"/>
+            <circle cx="4" cy="178" r="2" fill="#A8E4F8" opacity="0.6"/>
+            <circle cx="16" cy="165" r="1.8" fill="#7DD4F0" opacity="0.55"/>
+            <circle cx="6" cy="188" r="1.5" fill="#A8E4F8" opacity="0.5"/>
+          </g>
+        </svg>
+
+        <svg width="140" height="160" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" aria-label="lion">
+          <ellipse cx="80" cy="105" rx="35" ry="25" fill="#D4A574"/>
+          <rect x="55" y="120" width="10" height="20" rx="4" fill="#B8895A"/>
+          <rect x="95" y="120" width="10" height="20" rx="4" fill="#B8895A"/>
+          <rect x="65" y="122" width="10" height="20" rx="4" fill="#D4A574"/>
+          <rect x="85" y="122" width="10" height="20" rx="4" fill="#D4A574"/>
+          <path d="M115 95 Q125 100 122 110" stroke="#B8895A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="123" cy="112" rx="3" ry="4" fill="#8B5A3C"/>
+          <ellipse cx="32" cy="58" rx="7" ry="9" fill="#8B5A3C"/>
+          <ellipse cx="32" cy="59" rx="4" ry="6" fill="#FFC0B0"/>
+          <ellipse cx="68" cy="58" rx="7" ry="9" fill="#8B5A3C"/>
+          <ellipse cx="68" cy="59" rx="4" ry="6" fill="#FFC0B0"/>
+          <circle cx="50" cy="80" r="28" fill="#E8B87A"/>
+          <circle cx="38" cy="58" r="6" fill="#8B5A3C"/>
+          <circle cx="62" cy="58" r="6" fill="#8B5A3C"/>
+          <circle cx="78" cy="78" r="6" fill="#8B5A3C"/>
+          <circle cx="22" cy="78" r="6" fill="#8B5A3C"/>
+          <circle cx="32" cy="100" r="6" fill="#8B5A3C"/>
+          <circle cx="68" cy="100" r="6" fill="#8B5A3C"/>
+          <ellipse cx="40" cy="74" rx="5" ry="7" fill="#3A2A1A"/>
+          <ellipse cx="56" cy="74" rx="5" ry="7" fill="#3A2A1A"/>
+          <circle cx="40" cy="74" r="2.5" fill="#fff"/>
+          <circle cx="56" cy="74" r="2.5" fill="#fff"/>
+          <circle cx="40" cy="75" r="1.2" fill="#222"/>
+          <circle cx="56" cy="75" r="1.2" fill="#222"/>
+          <ellipse cx="48" cy="86" rx="5" ry="3.5" fill="#D4A574"/>
+          <path d="M48 86 L48 91" stroke="#222" stroke-width="1"/>
+          <path d="M48 91 Q44 94 42 92" stroke="#222" stroke-width="1" fill="none"/>
+          <path d="M48 91 Q52 94 54 92" stroke="#222" stroke-width="1" fill="none"/>
+          <ellipse cx="48" cy="84" rx="3" ry="2" fill="#222"/>
+        </svg>
+
+        <svg width="120" height="160" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-label="monkey">
+          <ellipse cx="60" cy="95" rx="28" ry="32" fill="#8B6F47"/>
+          <ellipse cx="60" cy="105" rx="20" ry="22" fill="#E8C19A"/>
+          <rect x="42" y="120" width="10" height="22" rx="4" fill="#6B5237"/>
+          <rect x="68" y="120" width="10" height="22" rx="4" fill="#6B5237"/>
+          <path d="M85 90 Q105 80 110 95 Q108 105 95 100" stroke="#8B6F47" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M35 85 Q25 70 30 60" stroke="#8B6F47" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M85 90 Q100 100 105 110" stroke="#8B6F47" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <circle cx="60" cy="55" r="22" fill="#8B6F47"/>
+          <ellipse cx="60" cy="62" rx="16" ry="14" fill="#E8C19A"/>
+          <circle cx="42" cy="42" r="8" fill="#8B6F47"/>
+          <circle cx="78" cy="42" r="8" fill="#8B6F47"/>
+          <circle cx="42" cy="42" r="5" fill="#E8C19A"/>
+          <circle cx="78" cy="42" r="5" fill="#E8C19A"/>
+          <circle cx="52" cy="55" r="3.5" fill="#222"/>
+          <circle cx="68" cy="55" r="3.5" fill="#222"/>
+          <circle cx="51" cy="54" r="1.2" fill="#fff"/>
+          <circle cx="67" cy="54" r="1.2" fill="#fff"/>
+          <ellipse cx="60" cy="65" rx="2" ry="1.5" fill="#222"/>
+          <path d="M60 67 Q56 70 54 68" stroke="#222" stroke-width="1" fill="none"/>
+          <path d="M60 67 Q64 70 66 68" stroke="#222" stroke-width="1" fill="none"/>
+        </svg>
+
+        <svg width="140" height="160" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" aria-label="tiger">
+          <ellipse cx="75" cy="105" rx="35" ry="25" fill="#E89B3C"/>
+          <path d="M50 90 Q55 95 60 90" stroke="#3A2A1A" stroke-width="3" fill="none"/>
+          <path d="M70 88 Q75 94 80 88" stroke="#3A2A1A" stroke-width="3" fill="none"/>
+          <path d="M90 92 Q95 98 100 92" stroke="#3A2A1A" stroke-width="3" fill="none"/>
+          <rect x="50" y="120" width="10" height="22" rx="4" fill="#C77B22"/>
+          <rect x="90" y="120" width="10" height="22" rx="4" fill="#C77B22"/>
+          <rect x="60" y="122" width="10" height="22" rx="4" fill="#E89B3C"/>
+          <rect x="80" y="122" width="10" height="22" rx="4" fill="#E89B3C"/>
+          <path d="M108 95 Q120 92 122 102 Q124 112 116 110" stroke="#E89B3C" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M115 100 L118 102" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M118 105 L121 107" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M28 56 L25 42 L36 50 Z" fill="#E89B3C" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M30 54 L29 47 L33 51 Z" fill="#FFC0B0"/>
+          <path d="M68 56 L71 42 L60 50 Z" fill="#E89B3C" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M66 54 L67 47 L63 51 Z" fill="#FFC0B0"/>
+          <circle cx="48" cy="75" r="25" fill="#E89B3C"/>
+          <ellipse cx="48" cy="82" rx="18" ry="14" fill="#FFE4C4"/>
+          <path d="M30 70 L25 65" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M28 75 L22 73" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M65 70 L70 65" stroke="#3A2A1A" stroke-width="2"/>
+          <ellipse cx="38" cy="62" rx="4.5" ry="6" fill="#fff"/>
+          <ellipse cx="56" cy="62" rx="4.5" ry="6" fill="#fff"/>
+          <circle cx="38" cy="63" r="2.5" fill="#1a4a1a"/>
+          <circle cx="56" cy="63" r="2.5" fill="#1a4a1a"/>
+          <circle cx="38" cy="62" r="1" fill="#fff"/>
+          <circle cx="56" cy="62" r="1" fill="#fff"/>
+          <ellipse cx="47" cy="80" rx="4" ry="3" fill="#222"/>
+          <path d="M47 82 L47 86" stroke="#222" stroke-width="1"/>
+        </svg>
+
+        <svg width="100" height="160" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" aria-label="giraffe">
+          <ellipse cx="55" cy="115" rx="22" ry="18" fill="#E8C46A"/>
+          <ellipse cx="50" cy="105" rx="6" ry="5" fill="#8B6515"/>
+          <ellipse cx="65" cy="118" rx="5" ry="4" fill="#8B6515"/>
+          <ellipse cx="40" cy="120" rx="4" ry="4" fill="#8B6515"/>
+          <rect x="42" y="128" width="6" height="22" rx="2" fill="#E8C46A"/>
+          <rect x="62" y="128" width="6" height="22" rx="2" fill="#E8C46A"/>
+          <rect x="50" y="130" width="6" height="20" rx="2" fill="#C99F40"/>
+          <rect x="68" y="130" width="6" height="20" rx="2" fill="#C99F40"/>
+          <rect x="32" y="60" width="14" height="55" fill="#E8C46A"/>
+          <ellipse cx="38" cy="68" rx="5" ry="4" fill="#8B6515"/>
+          <ellipse cx="42" cy="88" rx="4" ry="4" fill="#8B6515"/>
+          <ellipse cx="35" cy="100" rx="4" ry="3" fill="#8B6515"/>
+          <ellipse cx="34" cy="55" rx="14" ry="11" fill="#E8C46A"/>
+          <path d="M28 47 L26 40 L30 44 Z" fill="#8B6515"/>
+          <path d="M40 47 L42 40 L38 44 Z" fill="#8B6515"/>
+          <line x1="34" y1="44" x2="33" y2="38" stroke="#8B6515" stroke-width="2"/>
+          <ellipse cx="33" cy="36" rx="2.5" ry="3" fill="#3A2A1A"/>
+          <line x1="35" y1="44" x2="36" y2="38" stroke="#8B6515" stroke-width="2"/>
+          <ellipse cx="36" cy="36" rx="2.5" ry="3" fill="#3A2A1A"/>
+          <circle cx="30" cy="52" r="2" fill="#222"/>
+          <ellipse cx="26" cy="58" rx="2" ry="1.5" fill="#222"/>
+        </svg>
+
+        <svg width="220" height="200" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" aria-label="zebra">
+          <ellipse cx="125" cy="105" rx="60" ry="30" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <path d="M68 90 Q56 70 52 50 Q54 38 64 40 Q72 60 82 95 Z" fill="#fff" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M52 50 Q42 48 30 50 Q18 54 14 64 Q12 76 22 80 Q34 82 46 76 Q56 70 60 60 Z" fill="#fff" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+          <ellipse cx="20" cy="73" rx="5" ry="3" fill="#222"/>
+          <ellipse cx="22" cy="73" rx="2" ry="1.5" fill="#FFC0B0"/>
+          <ellipse cx="42" cy="62" rx="2.2" ry="2.8" fill="#222"/>
+          <circle cx="42.5" cy="61" r="0.7" fill="#fff"/>
+          <path d="M50 42 Q48 30 54 30 Q56 38 56 46 Z" fill="#fff" stroke="#000" stroke-width="2"/>
+          <path d="M52 40 Q51 33 55 33 Q56 38 55 44 Z" fill="#FFC0B0"/>
+          <path d="M60 44 Q58 32 64 32 Q66 40 66 48 Z" fill="#fff" stroke="#000" stroke-width="2"/>
+          <path d="M62 42 Q61 35 65 35 Q66 40 65 46 Z" fill="#FFC0B0"/>
+          <path d="M16 70 Q22 71 28 69" stroke="#222" stroke-width="2.5" fill="none"/>
+          <path d="M18 76 Q26 78 32 75" stroke="#222" stroke-width="2.5" fill="none"/>
+          <path d="M22 82 Q30 83 38 80" stroke="#222" stroke-width="2.5" fill="none"/>
+          <path d="M52 45 Q54 36 58 32" stroke="#222" stroke-width="3" fill="none"/>
+          <path d="M58 50 Q60 40 64 36" stroke="#222" stroke-width="3" fill="none"/>
+          <path d="M64 56 Q66 46 70 42" stroke="#222" stroke-width="3" fill="none"/>
+          <path d="M68 65 Q72 64 76 65" stroke="#222" stroke-width="3.5" fill="none"/>
+          <path d="M70 75 Q76 74 82 75" stroke="#222" stroke-width="3.5" fill="none"/>
+          <path d="M74 85 Q80 84 86 85" stroke="#222" stroke-width="3.5" fill="none"/>
+          <path d="M88 80 L90 130" stroke="#222" stroke-width="4"/>
+          <path d="M102 78 L104 132" stroke="#222" stroke-width="4"/>
+          <path d="M116 76 L116 132" stroke="#222" stroke-width="4"/>
+          <path d="M130 76 L130 132" stroke="#222" stroke-width="4"/>
+          <path d="M144 78 L142 132" stroke="#222" stroke-width="4"/>
+          <path d="M158 80 L156 130" stroke="#222" stroke-width="4"/>
+          <path d="M170 84 L168 126" stroke="#222" stroke-width="4"/>
+          <rect x="88" y="128" width="11" height="42" rx="3" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <rect x="88" y="133" width="11" height="4" fill="#222"/>
+          <rect x="88" y="143" width="11" height="4" fill="#222"/>
+          <rect x="88" y="153" width="11" height="4" fill="#222"/>
+          <rect x="86" y="166" width="15" height="6" rx="2" fill="#222"/>
+          <rect x="155" y="128" width="11" height="42" rx="3" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <rect x="155" y="133" width="11" height="4" fill="#222"/>
+          <rect x="155" y="143" width="11" height="4" fill="#222"/>
+          <rect x="155" y="153" width="11" height="4" fill="#222"/>
+          <rect x="153" y="166" width="15" height="6" rx="2" fill="#222"/>
+          <rect x="106" y="130" width="10" height="40" rx="3" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <rect x="106" y="135" width="10" height="4" fill="#222"/>
+          <rect x="106" y="145" width="10" height="4" fill="#222"/>
+          <rect x="106" y="155" width="10" height="4" fill="#222"/>
+          <rect x="104" y="166" width="14" height="6" rx="2" fill="#222"/>
+          <rect x="136" y="130" width="10" height="40" rx="3" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <rect x="136" y="135" width="10" height="4" fill="#222"/>
+          <rect x="136" y="145" width="10" height="4" fill="#222"/>
+          <rect x="136" y="155" width="10" height="4" fill="#222"/>
+          <rect x="134" y="166" width="14" height="6" rx="2" fill="#222"/>
+          <path d="M180 98 Q194 96 198 106 Q198 114 192 118" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M180 98 Q194 96 198 106 Q198 114 192 118" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="190" cy="121" rx="4" ry="6" fill="#222"/>
+        </svg>
+
+        <svg width="120" height="160" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-label="dog">
+          <ellipse cx="65" cy="100" rx="30" ry="22" fill="#C49B6E"/>
+          <rect x="48" y="115" width="9" height="22" rx="3" fill="#A37F50"/>
+          <rect x="80" y="115" width="9" height="22" rx="3" fill="#A37F50"/>
+          <rect x="58" y="118" width="9" height="22" rx="3" fill="#C49B6E"/>
+          <rect x="72" y="118" width="9" height="22" rx="3" fill="#C49B6E"/>
+          <path d="M93 90 Q103 95 100 105" stroke="#C49B6E" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="38" cy="78" r="22" fill="#C49B6E"/>
+          <ellipse cx="38" cy="86" rx="14" ry="11" fill="#E8C19A"/>
+          <path d="M22 60 Q18 50 22 48 Q26 52 28 65" fill="#A37F50"/>
+          <path d="M54 60 Q58 50 54 48 Q50 52 48 65" fill="#A37F50"/>
+          <path d="M22 60 Q19 53 23 50 Q26 54 27 62" fill="#FFC0B0"/>
+          <path d="M54 60 Q57 53 53 50 Q50 54 49 62" fill="#FFC0B0"/>
+          <circle cx="30" cy="74" r="3.5" fill="#222"/>
+          <circle cx="46" cy="74" r="3.5" fill="#222"/>
+          <circle cx="29" cy="73" r="1.2" fill="#fff"/>
+          <circle cx="45" cy="73" r="1.2" fill="#fff"/>
+          <ellipse cx="38" cy="86" rx="3" ry="2.5" fill="#222"/>
+          <path d="M38 89 L38 93" stroke="#222" stroke-width="1.2"/>
+          <path d="M38 93 Q34 96 32 94" stroke="#222" stroke-width="1.2" fill="none"/>
+          <path d="M38 93 Q42 96 44 94" stroke="#222" stroke-width="1.2" fill="none"/>
+        </svg>
+
+        <svg width="120" height="160" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-label="cat">
+          <ellipse cx="65" cy="105" rx="28" ry="20" fill="#5A4A3C"/>
+          <rect x="50" y="118" width="8" height="22" rx="3" fill="#3A2A1C"/>
+          <rect x="78" y="118" width="8" height="22" rx="3" fill="#3A2A1C"/>
+          <rect x="58" y="120" width="8" height="22" rx="3" fill="#5A4A3C"/>
+          <rect x="70" y="120" width="8" height="22" rx="3" fill="#5A4A3C"/>
+          <path d="M90 100 Q102 90 105 105 Q102 115 95 110" stroke="#5A4A3C" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="40" cy="80" r="22" fill="#5A4A3C"/>
+          <path d="M22 64 L26 50 L34 62 Z" fill="#5A4A3C"/>
+          <path d="M46 62 L54 50 L58 64 Z" fill="#5A4A3C"/>
+          <path d="M24 62 L27 54 L31 60 Z" fill="#FFC0B0"/>
+          <path d="M48 60 L52 54 L55 62 Z" fill="#FFC0B0"/>
+          <ellipse cx="32" cy="78" rx="3.5" ry="5" fill="#9ACD32"/>
+          <ellipse cx="48" cy="78" rx="3.5" ry="5" fill="#9ACD32"/>
+          <ellipse cx="32" cy="78" rx="1" ry="4" fill="#222"/>
+          <ellipse cx="48" cy="78" rx="1" ry="4" fill="#222"/>
+          <ellipse cx="40" cy="86" rx="2" ry="1.5" fill="#FFC0B0"/>
+          <path d="M40 88 L40 91" stroke="#222" stroke-width="1.2"/>
+          <path d="M40 91 Q37 93 35 91" stroke="#222" stroke-width="1.2" fill="none"/>
+          <path d="M40 91 Q43 93 45 91" stroke="#222" stroke-width="1.2" fill="none"/>
+          <line x1="22" y1="82" x2="14" y2="80" stroke="#222" stroke-width="1"/>
+          <line x1="22" y1="86" x2="14" y2="86" stroke="#222" stroke-width="1"/>
+          <line x1="58" y1="82" x2="66" y2="80" stroke="#222" stroke-width="1"/>
+          <line x1="58" y1="86" x2="66" y2="86" stroke="#222" stroke-width="1"/>
+        </svg>
+
+        <svg width="140" height="160" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" aria-label="platypus">
+          <ellipse cx="75" cy="115" rx="38" ry="20" fill="#6B4E2E"/>
+          <ellipse cx="100" cy="118" rx="18" ry="10" fill="#4A3520"/>
+          <rect x="55" y="128" width="10" height="14" rx="3" fill="#4A3520"/>
+          <rect x="85" y="128" width="10" height="14" rx="3" fill="#4A3520"/>
+          <ellipse cx="55" cy="142" rx="10" ry="3" fill="#E89B3C"/>
+          <ellipse cx="85" cy="142" rx="10" ry="3" fill="#E89B3C"/>
+          <path d="M60 145 L58 148 M64 145 L64 149 M68 145 L70 148" stroke="#222" stroke-width="0.8"/>
+          <path d="M80 145 L78 148 M84 145 L84 149 M88 145 L90 148" stroke="#222" stroke-width="0.8"/>
+          <ellipse cx="38" cy="105" rx="22" ry="18" fill="#6B4E2E"/>
+          <ellipse cx="20" cy="108" rx="14" ry="9" fill="#3A2A1A"/>
+          <ellipse cx="20" cy="108" rx="14" ry="9" fill="none" stroke="#222" stroke-width="1.5"/>
+          <ellipse cx="14" cy="106" rx="2" ry="1.5" fill="#000"/>
+          <ellipse cx="14" cy="110" rx="2" ry="1.5" fill="#000"/>
+          <circle cx="42" cy="98" r="3" fill="#222"/>
+          <circle cx="42" cy="98" r="1" fill="#fff"/>
+        </svg>
+
+      
+
+        <svg width="170" height="200" viewBox="0 0 170 200" xmlns="http://www.w3.org/2000/svg" aria-label="elephant">
+          <ellipse cx="95" cy="22" rx="18" ry="20" fill="#FF6B9D"/>
+          <ellipse cx="89" cy="16" rx="5" ry="6" fill="#FF9EC4" opacity="0.6"/>
+          <path d="M95 42 Q93 50 95 58" stroke="#aaa" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="95" cy="43" rx="3" ry="2" fill="#e05090"/>
+          <path d="M95 58 Q85 74 72 104" stroke="#aaa" stroke-width="1" fill="none" stroke-dasharray="3,2"/>
+          <ellipse cx="100" cy="145" rx="44" ry="34" fill="#A0A0B0"/>
+          <rect x="68" y="165" width="17" height="30" rx="8" fill="#8A8A9A"/>
+          <rect x="108" y="165" width="17" height="30" rx="8" fill="#8A8A9A"/>
+          <rect x="78" y="168" width="17" height="27" rx="8" fill="#A0A0B0"/>
+          <rect x="99" y="168" width="17" height="27" rx="8" fill="#A0A0B0"/>
+          <path d="M142 135 Q153 139 149 150 Q146 157 149 162" stroke="#8A8A9A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="149" cy="165" rx="4" ry="3" fill="#707080"/>
+          <ellipse cx="75" cy="122" rx="33" ry="30" fill="#A0A0B0"/>
+          <ellipse cx="98" cy="105" rx="20" ry="24" fill="#C0A0B8"/>
+          <ellipse cx="96" cy="106" rx="13" ry="16" fill="#E0C0D0" opacity="0.7"/>
+          <circle cx="62" cy="114" r="5.5" fill="white"/>
+          <circle cx="61" cy="114" r="3.5" fill="#222"/>
+          <circle cx="60" cy="113" r="1.2" fill="white"/>
+          <ellipse cx="70" cy="110" rx="11" ry="8" fill="#B8B8C8" opacity="0.45"/>
+          <path d="M58 142 Q48 152 46 162 Q45 167 50 167" stroke="#F5E6C0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M55 134 Q38 148 26 168 Q18 182 20 192 Q22 200 30 196 Q36 192 32 184" stroke="#A0A0B0" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M55 134 Q38 148 26 168 Q18 182 20 192 Q22 200 30 196 Q36 192 32 184" stroke="#B8B8C8" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.45"/>
+          <path d="M68 144 Q72 152 73 160 Q73 165 68 165" stroke="#F5E6C0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <g class="water-spray">
+            <ellipse cx="22" cy="178" rx="3" ry="5" fill="#7DD4F0" opacity="0.85" transform="rotate(-40 22 178)"/>
+            <ellipse cx="14" cy="172" rx="2.5" ry="4.5" fill="#7DD4F0" opacity="0.75" transform="rotate(-60 14 172)"/>
+            <ellipse cx="10" cy="182" rx="2" ry="4" fill="#A8E4F8" opacity="0.7" transform="rotate(-20 10 182)"/>
+            <circle cx="8" cy="170" r="2.5" fill="#7DD4F0" opacity="0.65"/>
+            <circle cx="4" cy="178" r="2" fill="#A8E4F8" opacity="0.6"/>
+            <circle cx="16" cy="165" r="1.8" fill="#7DD4F0" opacity="0.55"/>
+            <circle cx="6" cy="188" r="1.5" fill="#A8E4F8" opacity="0.5"/>
+          </g>
+        </svg>
+
+        <svg width="140" height="160" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" aria-label="lion">
+          <ellipse cx="80" cy="105" rx="35" ry="25" fill="#D4A574"/>
+          <rect x="55" y="120" width="10" height="20" rx="4" fill="#B8895A"/>
+          <rect x="95" y="120" width="10" height="20" rx="4" fill="#B8895A"/>
+          <rect x="65" y="122" width="10" height="20" rx="4" fill="#D4A574"/>
+          <rect x="85" y="122" width="10" height="20" rx="4" fill="#D4A574"/>
+          <path d="M115 95 Q125 100 122 110" stroke="#B8895A" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="123" cy="112" rx="3" ry="4" fill="#8B5A3C"/>
+          <ellipse cx="32" cy="58" rx="7" ry="9" fill="#8B5A3C"/>
+          <ellipse cx="32" cy="59" rx="4" ry="6" fill="#FFC0B0"/>
+          <ellipse cx="68" cy="58" rx="7" ry="9" fill="#8B5A3C"/>
+          <ellipse cx="68" cy="59" rx="4" ry="6" fill="#FFC0B0"/>
+          <circle cx="50" cy="80" r="28" fill="#E8B87A"/>
+          <circle cx="38" cy="58" r="6" fill="#8B5A3C"/>
+          <circle cx="62" cy="58" r="6" fill="#8B5A3C"/>
+          <circle cx="78" cy="78" r="6" fill="#8B5A3C"/>
+          <circle cx="22" cy="78" r="6" fill="#8B5A3C"/>
+          <circle cx="32" cy="100" r="6" fill="#8B5A3C"/>
+          <circle cx="68" cy="100" r="6" fill="#8B5A3C"/>
+          <ellipse cx="40" cy="74" rx="5" ry="7" fill="#3A2A1A"/>
+          <ellipse cx="56" cy="74" rx="5" ry="7" fill="#3A2A1A"/>
+          <circle cx="40" cy="74" r="2.5" fill="#fff"/>
+          <circle cx="56" cy="74" r="2.5" fill="#fff"/>
+          <circle cx="40" cy="75" r="1.2" fill="#222"/>
+          <circle cx="56" cy="75" r="1.2" fill="#222"/>
+          <ellipse cx="48" cy="86" rx="5" ry="3.5" fill="#D4A574"/>
+          <path d="M48 86 L48 91" stroke="#222" stroke-width="1"/>
+          <path d="M48 91 Q44 94 42 92" stroke="#222" stroke-width="1" fill="none"/>
+          <path d="M48 91 Q52 94 54 92" stroke="#222" stroke-width="1" fill="none"/>
+          <ellipse cx="48" cy="84" rx="3" ry="2" fill="#222"/>
+        </svg>
+
+        <svg width="120" height="160" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-label="monkey">
+          <ellipse cx="60" cy="95" rx="28" ry="32" fill="#8B6F47"/>
+          <ellipse cx="60" cy="105" rx="20" ry="22" fill="#E8C19A"/>
+          <rect x="42" y="120" width="10" height="22" rx="4" fill="#6B5237"/>
+          <rect x="68" y="120" width="10" height="22" rx="4" fill="#6B5237"/>
+          <path d="M85 90 Q105 80 110 95 Q108 105 95 100" stroke="#8B6F47" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M35 85 Q25 70 30 60" stroke="#8B6F47" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M85 90 Q100 100 105 110" stroke="#8B6F47" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <circle cx="60" cy="55" r="22" fill="#8B6F47"/>
+          <ellipse cx="60" cy="62" rx="16" ry="14" fill="#E8C19A"/>
+          <circle cx="42" cy="42" r="8" fill="#8B6F47"/>
+          <circle cx="78" cy="42" r="8" fill="#8B6F47"/>
+          <circle cx="42" cy="42" r="5" fill="#E8C19A"/>
+          <circle cx="78" cy="42" r="5" fill="#E8C19A"/>
+          <circle cx="52" cy="55" r="3.5" fill="#222"/>
+          <circle cx="68" cy="55" r="3.5" fill="#222"/>
+          <circle cx="51" cy="54" r="1.2" fill="#fff"/>
+          <circle cx="67" cy="54" r="1.2" fill="#fff"/>
+          <ellipse cx="60" cy="65" rx="2" ry="1.5" fill="#222"/>
+          <path d="M60 67 Q56 70 54 68" stroke="#222" stroke-width="1" fill="none"/>
+          <path d="M60 67 Q64 70 66 68" stroke="#222" stroke-width="1" fill="none"/>
+        </svg>
+
+        <svg width="140" height="160" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" aria-label="tiger">
+          <ellipse cx="75" cy="105" rx="35" ry="25" fill="#E89B3C"/>
+          <path d="M50 90 Q55 95 60 90" stroke="#3A2A1A" stroke-width="3" fill="none"/>
+          <path d="M70 88 Q75 94 80 88" stroke="#3A2A1A" stroke-width="3" fill="none"/>
+          <path d="M90 92 Q95 98 100 92" stroke="#3A2A1A" stroke-width="3" fill="none"/>
+          <rect x="50" y="120" width="10" height="22" rx="4" fill="#C77B22"/>
+          <rect x="90" y="120" width="10" height="22" rx="4" fill="#C77B22"/>
+          <rect x="60" y="122" width="10" height="22" rx="4" fill="#E89B3C"/>
+          <rect x="80" y="122" width="10" height="22" rx="4" fill="#E89B3C"/>
+          <path d="M108 95 Q120 92 122 102 Q124 112 116 110" stroke="#E89B3C" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M115 100 L118 102" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M118 105 L121 107" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M28 56 L25 42 L36 50 Z" fill="#E89B3C" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M30 54 L29 47 L33 51 Z" fill="#FFC0B0"/>
+          <path d="M68 56 L71 42 L60 50 Z" fill="#E89B3C" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M66 54 L67 47 L63 51 Z" fill="#FFC0B0"/>
+          <circle cx="48" cy="75" r="25" fill="#E89B3C"/>
+          <ellipse cx="48" cy="82" rx="18" ry="14" fill="#FFE4C4"/>
+          <path d="M30 70 L25 65" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M28 75 L22 73" stroke="#3A2A1A" stroke-width="2"/>
+          <path d="M65 70 L70 65" stroke="#3A2A1A" stroke-width="2"/>
+          <ellipse cx="38" cy="62" rx="4.5" ry="6" fill="#fff"/>
+          <ellipse cx="56" cy="62" rx="4.5" ry="6" fill="#fff"/>
+          <circle cx="38" cy="63" r="2.5" fill="#1a4a1a"/>
+          <circle cx="56" cy="63" r="2.5" fill="#1a4a1a"/>
+          <circle cx="38" cy="62" r="1" fill="#fff"/>
+          <circle cx="56" cy="62" r="1" fill="#fff"/>
+          <ellipse cx="47" cy="80" rx="4" ry="3" fill="#222"/>
+          <path d="M47 82 L47 86" stroke="#222" stroke-width="1"/>
+        </svg>
+
+        <svg width="100" height="160" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" aria-label="giraffe">
+          <ellipse cx="55" cy="115" rx="22" ry="18" fill="#E8C46A"/>
+          <ellipse cx="50" cy="105" rx="6" ry="5" fill="#8B6515"/>
+          <ellipse cx="65" cy="118" rx="5" ry="4" fill="#8B6515"/>
+          <ellipse cx="40" cy="120" rx="4" ry="4" fill="#8B6515"/>
+          <rect x="42" y="128" width="6" height="22" rx="2" fill="#E8C46A"/>
+          <rect x="62" y="128" width="6" height="22" rx="2" fill="#E8C46A"/>
+          <rect x="50" y="130" width="6" height="20" rx="2" fill="#C99F40"/>
+          <rect x="68" y="130" width="6" height="20" rx="2" fill="#C99F40"/>
+          <rect x="32" y="60" width="14" height="55" fill="#E8C46A"/>
+          <ellipse cx="38" cy="68" rx="5" ry="4" fill="#8B6515"/>
+          <ellipse cx="42" cy="88" rx="4" ry="4" fill="#8B6515"/>
+          <ellipse cx="35" cy="100" rx="4" ry="3" fill="#8B6515"/>
+          <ellipse cx="34" cy="55" rx="14" ry="11" fill="#E8C46A"/>
+          <path d="M28 47 L26 40 L30 44 Z" fill="#8B6515"/>
+          <path d="M40 47 L42 40 L38 44 Z" fill="#8B6515"/>
+          <line x1="34" y1="44" x2="33" y2="38" stroke="#8B6515" stroke-width="2"/>
+          <ellipse cx="33" cy="36" rx="2.5" ry="3" fill="#3A2A1A"/>
+          <line x1="35" y1="44" x2="36" y2="38" stroke="#8B6515" stroke-width="2"/>
+          <ellipse cx="36" cy="36" rx="2.5" ry="3" fill="#3A2A1A"/>
+          <circle cx="30" cy="52" r="2" fill="#222"/>
+          <ellipse cx="26" cy="58" rx="2" ry="1.5" fill="#222"/>
+        </svg>
+
+        <svg width="220" height="200" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" aria-label="zebra">
+          <ellipse cx="125" cy="105" rx="60" ry="30" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <path d="M68 90 Q56 70 52 50 Q54 38 64 40 Q72 60 82 95 Z" fill="#fff" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M52 50 Q42 48 30 50 Q18 54 14 64 Q12 76 22 80 Q34 82 46 76 Q56 70 60 60 Z" fill="#fff" stroke="#000" stroke-width="2.5" stroke-linejoin="round"/>
+          <ellipse cx="20" cy="73" rx="5" ry="3" fill="#222"/>
+          <ellipse cx="22" cy="73" rx="2" ry="1.5" fill="#FFC0B0"/>
+          <ellipse cx="42" cy="62" rx="2.2" ry="2.8" fill="#222"/>
+          <circle cx="42.5" cy="61" r="0.7" fill="#fff"/>
+          <path d="M50 42 Q48 30 54 30 Q56 38 56 46 Z" fill="#fff" stroke="#000" stroke-width="2"/>
+          <path d="M52 40 Q51 33 55 33 Q56 38 55 44 Z" fill="#FFC0B0"/>
+          <path d="M60 44 Q58 32 64 32 Q66 40 66 48 Z" fill="#fff" stroke="#000" stroke-width="2"/>
+          <path d="M62 42 Q61 35 65 35 Q66 40 65 46 Z" fill="#FFC0B0"/>
+          <path d="M16 70 Q22 71 28 69" stroke="#222" stroke-width="2.5" fill="none"/>
+          <path d="M18 76 Q26 78 32 75" stroke="#222" stroke-width="2.5" fill="none"/>
+          <path d="M22 82 Q30 83 38 80" stroke="#222" stroke-width="2.5" fill="none"/>
+          <path d="M52 45 Q54 36 58 32" stroke="#222" stroke-width="3" fill="none"/>
+          <path d="M58 50 Q60 40 64 36" stroke="#222" stroke-width="3" fill="none"/>
+          <path d="M64 56 Q66 46 70 42" stroke="#222" stroke-width="3" fill="none"/>
+          <path d="M68 65 Q72 64 76 65" stroke="#222" stroke-width="3.5" fill="none"/>
+          <path d="M70 75 Q76 74 82 75" stroke="#222" stroke-width="3.5" fill="none"/>
+          <path d="M74 85 Q80 84 86 85" stroke="#222" stroke-width="3.5" fill="none"/>
+          <path d="M88 80 L90 130" stroke="#222" stroke-width="4"/>
+          <path d="M102 78 L104 132" stroke="#222" stroke-width="4"/>
+          <path d="M116 76 L116 132" stroke="#222" stroke-width="4"/>
+          <path d="M130 76 L130 132" stroke="#222" stroke-width="4"/>
+          <path d="M144 78 L142 132" stroke="#222" stroke-width="4"/>
+          <path d="M158 80 L156 130" stroke="#222" stroke-width="4"/>
+          <path d="M170 84 L168 126" stroke="#222" stroke-width="4"/>
+          <rect x="88" y="128" width="11" height="42" rx="3" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <rect x="88" y="133" width="11" height="4" fill="#222"/>
+          <rect x="88" y="143" width="11" height="4" fill="#222"/>
+          <rect x="88" y="153" width="11" height="4" fill="#222"/>
+          <rect x="86" y="166" width="15" height="6" rx="2" fill="#222"/>
+          <rect x="155" y="128" width="11" height="42" rx="3" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <rect x="155" y="133" width="11" height="4" fill="#222"/>
+          <rect x="155" y="143" width="11" height="4" fill="#222"/>
+          <rect x="155" y="153" width="11" height="4" fill="#222"/>
+          <rect x="153" y="166" width="15" height="6" rx="2" fill="#222"/>
+          <rect x="106" y="130" width="10" height="40" rx="3" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <rect x="106" y="135" width="10" height="4" fill="#222"/>
+          <rect x="106" y="145" width="10" height="4" fill="#222"/>
+          <rect x="106" y="155" width="10" height="4" fill="#222"/>
+          <rect x="104" y="166" width="14" height="6" rx="2" fill="#222"/>
+          <rect x="136" y="130" width="10" height="40" rx="3" fill="#fff" stroke="#000" stroke-width="2.5"/>
+          <rect x="136" y="135" width="10" height="4" fill="#222"/>
+          <rect x="136" y="145" width="10" height="4" fill="#222"/>
+          <rect x="136" y="155" width="10" height="4" fill="#222"/>
+          <rect x="134" y="166" width="14" height="6" rx="2" fill="#222"/>
+          <path d="M180 98 Q194 96 198 106 Q198 114 192 118" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M180 98 Q194 96 198 106 Q198 114 192 118" stroke="#000" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="190" cy="121" rx="4" ry="6" fill="#222"/>
+        </svg>
+
+        <svg width="120" height="160" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-label="dog">
+          <ellipse cx="65" cy="100" rx="30" ry="22" fill="#C49B6E"/>
+          <rect x="48" y="115" width="9" height="22" rx="3" fill="#A37F50"/>
+          <rect x="80" y="115" width="9" height="22" rx="3" fill="#A37F50"/>
+          <rect x="58" y="118" width="9" height="22" rx="3" fill="#C49B6E"/>
+          <rect x="72" y="118" width="9" height="22" rx="3" fill="#C49B6E"/>
+          <path d="M93 90 Q103 95 100 105" stroke="#C49B6E" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <circle cx="38" cy="78" r="22" fill="#C49B6E"/>
+          <ellipse cx="38" cy="86" rx="14" ry="11" fill="#E8C19A"/>
+          <path d="M22 60 Q18 50 22 48 Q26 52 28 65" fill="#A37F50"/>
+          <path d="M54 60 Q58 50 54 48 Q50 52 48 65" fill="#A37F50"/>
+          <path d="M22 60 Q19 53 23 50 Q26 54 27 62" fill="#FFC0B0"/>
+          <path d="M54 60 Q57 53 53 50 Q50 54 49 62" fill="#FFC0B0"/>
+          <circle cx="30" cy="74" r="3.5" fill="#222"/>
+          <circle cx="46" cy="74" r="3.5" fill="#222"/>
+          <circle cx="29" cy="73" r="1.2" fill="#fff"/>
+          <circle cx="45" cy="73" r="1.2" fill="#fff"/>
+          <ellipse cx="38" cy="86" rx="3" ry="2.5" fill="#222"/>
+          <path d="M38 89 L38 93" stroke="#222" stroke-width="1.2"/>
+          <path d="M38 93 Q34 96 32 94" stroke="#222" stroke-width="1.2" fill="none"/>
+          <path d="M38 93 Q42 96 44 94" stroke="#222" stroke-width="1.2" fill="none"/>
+        </svg>
+
+        <svg width="120" height="160" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg" aria-label="cat">
+          <ellipse cx="65" cy="105" rx="28" ry="20" fill="#5A4A3C"/>
+          <rect x="50" y="118" width="8" height="22" rx="3" fill="#3A2A1C"/>
+          <rect x="78" y="118" width="8" height="22" rx="3" fill="#3A2A1C"/>
+          <rect x="58" y="120" width="8" height="22" rx="3" fill="#5A4A3C"/>
+          <rect x="70" y="120" width="8" height="22" rx="3" fill="#5A4A3C"/>
+          <path d="M90 100 Q102 90 105 105 Q102 115 95 110" stroke="#5A4A3C" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="40" cy="80" r="22" fill="#5A4A3C"/>
+          <path d="M22 64 L26 50 L34 62 Z" fill="#5A4A3C"/>
+          <path d="M46 62 L54 50 L58 64 Z" fill="#5A4A3C"/>
+          <path d="M24 62 L27 54 L31 60 Z" fill="#FFC0B0"/>
+          <path d="M48 60 L52 54 L55 62 Z" fill="#FFC0B0"/>
+          <ellipse cx="32" cy="78" rx="3.5" ry="5" fill="#9ACD32"/>
+          <ellipse cx="48" cy="78" rx="3.5" ry="5" fill="#9ACD32"/>
+          <ellipse cx="32" cy="78" rx="1" ry="4" fill="#222"/>
+          <ellipse cx="48" cy="78" rx="1" ry="4" fill="#222"/>
+          <ellipse cx="40" cy="86" rx="2" ry="1.5" fill="#FFC0B0"/>
+          <path d="M40 88 L40 91" stroke="#222" stroke-width="1.2"/>
+          <path d="M40 91 Q37 93 35 91" stroke="#222" stroke-width="1.2" fill="none"/>
+          <path d="M40 91 Q43 93 45 91" stroke="#222" stroke-width="1.2" fill="none"/>
+          <line x1="22" y1="82" x2="14" y2="80" stroke="#222" stroke-width="1"/>
+          <line x1="22" y1="86" x2="14" y2="86" stroke="#222" stroke-width="1"/>
+          <line x1="58" y1="82" x2="66" y2="80" stroke="#222" stroke-width="1"/>
+          <line x1="58" y1="86" x2="66" y2="86" stroke="#222" stroke-width="1"/>
+        </svg>
+
+        <svg width="140" height="160" viewBox="0 0 140 160" xmlns="http://www.w3.org/2000/svg" aria-label="platypus">
+          <ellipse cx="75" cy="115" rx="38" ry="20" fill="#6B4E2E"/>
+          <ellipse cx="100" cy="118" rx="18" ry="10" fill="#4A3520"/>
+          <rect x="55" y="128" width="10" height="14" rx="3" fill="#4A3520"/>
+          <rect x="85" y="128" width="10" height="14" rx="3" fill="#4A3520"/>
+          <ellipse cx="55" cy="142" rx="10" ry="3" fill="#E89B3C"/>
+          <ellipse cx="85" cy="142" rx="10" ry="3" fill="#E89B3C"/>
+          <path d="M60 145 L58 148 M64 145 L64 149 M68 145 L70 148" stroke="#222" stroke-width="0.8"/>
+          <path d="M80 145 L78 148 M84 145 L84 149 M88 145 L90 148" stroke="#222" stroke-width="0.8"/>
+          <ellipse cx="38" cy="105" rx="22" ry="18" fill="#6B4E2E"/>
+          <ellipse cx="20" cy="108" rx="14" ry="9" fill="#3A2A1A"/>
+          <ellipse cx="20" cy="108" rx="14" ry="9" fill="none" stroke="#222" stroke-width="1.5"/>
+          <ellipse cx="14" cy="106" rx="2" ry="1.5" fill="#000"/>
+          <ellipse cx="14" cy="110" rx="2" ry="1.5" fill="#000"/>
+          <circle cx="42" cy="98" r="3" fill="#222"/>
+          <circle cx="42" cy="98" r="1" fill="#fff"/>
+        </svg>
+
+      </div>
+    </div>
+
+    <div class="pond-stage">
+      <svg width="100%" height="140" viewBox="0 0 800 140" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute; top:0; left:0;">
+        <ellipse cx="400" cy="100" rx="380" ry="35" fill="#5BB8E0"/>
+        <ellipse cx="400" cy="92" rx="380" ry="35" fill="#7DCCEF"/>
+        <path d="M50 88 Q80 86 110 88" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M250 92 Q280 90 310 92" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M450 86 Q480 84 510 86" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6"/>
+        <path d="M620 92 Q650 90 680 92" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.6"/>
+      </svg>
+      <svg width="60" height="20" style="position:absolute; left:15%; top:78px;" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg">
+        <g class="ripple-anim-1"><ellipse cx="30" cy="10" rx="20" ry="4" fill="none" stroke="#fff" stroke-width="1.5"/></g>
+      </svg>
+      <svg width="60" height="20" style="position:absolute; left:45%; top:78px;" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg">
+        <g class="ripple-anim-2"><ellipse cx="30" cy="10" rx="20" ry="4" fill="none" stroke="#fff" stroke-width="1.5"/></g>
+      </svg>
+      <svg width="60" height="20" style="position:absolute; left:70%; top:78px;" viewBox="0 0 60 20" xmlns="http://www.w3.org/2000/svg">
+        <g class="ripple-anim-3"><ellipse cx="30" cy="10" rx="20" ry="4" fill="none" stroke="#fff" stroke-width="1.5"/></g>
+      </svg>
+      <div class="fish-1">
+        <svg width="36" height="24" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="18" cy="12" rx="11" ry="7" fill="#FF8C42"/>
+          <path d="M28 12 L34 6 L34 18 Z" fill="#FF8C42"/>
+          <ellipse cx="14" cy="10" rx="2" ry="1.5" fill="#FFD93D" opacity="0.8"/>
+          <circle cx="11" cy="11" r="1.5" fill="#222"/>
+          <circle cx="11.3" cy="10.7" r="0.5" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="fish-2">
+        <svg width="34" height="22" viewBox="0 0 34 22" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="17" cy="11" rx="10" ry="6.5" fill="#9B59D9"/>
+          <path d="M7 11 L1 5 L1 17 Z" fill="#9B59D9"/>
+          <ellipse cx="20" cy="9" rx="2" ry="1.3" fill="#D7B3F2" opacity="0.8"/>
+          <circle cx="22" cy="10" r="1.4" fill="#222"/>
+          <circle cx="22.3" cy="9.7" r="0.5" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="fish-3">
+        <svg width="38" height="24" viewBox="0 0 38 24" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="19" cy="12" rx="12" ry="7" fill="#3DB37E"/>
+          <path d="M30 12 L36 6 L36 18 Z" fill="#3DB37E"/>
+          <ellipse cx="14" cy="10" rx="2" ry="1.5" fill="#A8E5C5" opacity="0.8"/>
+          <circle cx="11" cy="11" r="1.5" fill="#222"/>
+          <circle cx="11.3" cy="10.7" r="0.5" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="fish-4">
+        <svg width="34" height="22" viewBox="0 0 34 22" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="17" cy="11" rx="10" ry="6.5" fill="#FF4081"/>
+          <path d="M7 11 L1 5 L1 17 Z" fill="#FF4081"/>
+          <ellipse cx="20" cy="9" rx="2" ry="1.3" fill="#FFB3D1" opacity="0.8"/>
+          <circle cx="22" cy="10" r="1.4" fill="#222"/>
+          <circle cx="22.3" cy="9.7" r="0.5" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="fish-5">
+        <svg width="36" height="24" viewBox="0 0 36 24" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="18" cy="12" rx="11" ry="7" fill="#FFD93D"/>
+          <path d="M28 12 L34 6 L34 18 Z" fill="#FFD93D"/>
+          <ellipse cx="14" cy="10" rx="2" ry="1.5" fill="#FFF4B3" opacity="0.8"/>
+          <circle cx="11" cy="11" r="1.5" fill="#222"/>
+          <circle cx="11.3" cy="10.7" r="0.5" fill="#fff"/>
+        </svg>
+      </div>
+      <div class="fish-6">
+        <svg width="32" height="20" viewBox="0 0 32 20" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="16" cy="10" rx="9" ry="6" fill="#3DBADC"/>
+          <path d="M7 10 L1 5 L1 15 Z" fill="#3DBADC"/>
+          <ellipse cx="19" cy="8" rx="1.8" ry="1.2" fill="#A8E0F2" opacity="0.8"/>
+          <circle cx="21" cy="9" r="1.3" fill="#222"/>
+          <circle cx="21.3" cy="8.7" r="0.5" fill="#fff"/>
+        </svg>
+      </div>
+      <svg width="100%" height="60" viewBox="0 0 800 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute; top:80px; left:0; pointer-events:none;">
+        <path d="M0 30 Q200 25 400 30 T800 30 L800 60 L0 60 Z" fill="#5BB8E0" opacity="0.95"/>
+        <path d="M0 25 Q200 20 400 25 T800 25" stroke="#fff" stroke-width="2" fill="none" opacity="0.7"/>
+      </svg>
+    </div>
+
+    <div class="fun-section">
+      <div class="section-title">Push the buttons!</div>
+      <div class="button-row">
+        <button class="fun-button btn-pink" onclick="popConfetti()">Confetti!</button>
+        <button class="fun-button btn-orange" onclick="bounceAnimals()">Make animals jump!</button>
+        <button class="fun-button btn-teal" onclick="rainbowBackground()">Rainbow time!</button>
+        <button class="fun-button btn-purple" onclick="playBoop()">Boop!</button>
+      </div>
+
+      <div class="section-title">Play a game!</div>
+      <div class="game-grid">
+
+        <div class="game-card">
+          <div class="game-title">Pop the bubbles!</div>
+          <div class="shape-game-area" id="bubble-game">
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="popBubble(this)">
+              <circle cx="25" cy="25" r="22" fill="#FF6B9D" stroke="#E91E63" stroke-width="3"/>
+              <circle cx="18" cy="18" r="5" fill="#fff" opacity="0.7"/>
+            </svg>
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="popBubble(this)">
+              <circle cx="25" cy="25" r="22" fill="#4ECDC4" stroke="#2BA99D" stroke-width="3"/>
+              <circle cx="18" cy="18" r="5" fill="#fff" opacity="0.7"/>
+            </svg>
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="popBubble(this)">
+              <circle cx="25" cy="25" r="22" fill="#FFD93D" stroke="#FFC107" stroke-width="3"/>
+              <circle cx="18" cy="18" r="5" fill="#fff" opacity="0.7"/>
+            </svg>
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="popBubble(this)">
+              <circle cx="25" cy="25" r="22" fill="#B57EDC" stroke="#8B5CB8" stroke-width="3"/>
+              <circle cx="18" cy="18" r="5" fill="#fff" opacity="0.7"/>
+            </svg>
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="popBubble(this)">
+              <circle cx="25" cy="25" r="22" fill="#FFB347" stroke="#FF9500" stroke-width="3"/>
+              <circle cx="18" cy="18" r="5" fill="#fff" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="game-message" id="bubble-message">Pop them all!</div>
+          <div style="text-align:center; margin-top: 10px;"><button class="music-button" onclick="resetBubbles()">Reset</button></div>
+        </div>
+
+        <div class="game-card">
+          <div class="game-title">Match the color!</div>
+          <div class="color-target" id="color-target" style="background: #FF6B9D;"></div>
+          <div class="shape-game-area" id="color-game">
+            <div class="color-swatch" style="background: #FF6B9D;" onclick="checkColor(this, '#FF6B9D')"></div>
+            <div class="color-swatch" style="background: #4ECDC4;" onclick="checkColor(this, '#4ECDC4')"></div>
+            <div class="color-swatch" style="background: #FFD93D;" onclick="checkColor(this, '#FFD93D')"></div>
+            <div class="color-swatch" style="background: #B57EDC;" onclick="checkColor(this, '#B57EDC')"></div>
+          </div>
+          <div class="game-message" id="color-message">Click the matching color!</div>
+        </div>
+
+        <div class="game-card">
+          <div class="game-title">Count the stars!</div>
+          <div class="shape-game-area" id="count-game">
+            <svg width="40" height="40" viewBox="0 0 40 40" class="clickable-shape" onclick="countStar(this)">
+              <polygon points="20,4 25,16 38,16 28,24 32,36 20,28 8,36 12,24 2,16 15,16" fill="#FFD93D" stroke="#FFC107" stroke-width="2"/>
+            </svg>
+            <svg width="40" height="40" viewBox="0 0 40 40" class="clickable-shape" onclick="countStar(this)">
+              <polygon points="20,4 25,16 38,16 28,24 32,36 20,28 8,36 12,24 2,16 15,16" fill="#FFD93D" stroke="#FFC107" stroke-width="2"/>
+            </svg>
+            <svg width="40" height="40" viewBox="0 0 40 40" class="clickable-shape" onclick="countStar(this)">
+              <polygon points="20,4 25,16 38,16 28,24 32,36 20,28 8,36 12,24 2,16 15,16" fill="#FFD93D" stroke="#FFC107" stroke-width="2"/>
+            </svg>
+            <svg width="40" height="40" viewBox="0 0 40 40" class="clickable-shape" onclick="countStar(this)">
+              <polygon points="20,4 25,16 38,16 28,24 32,36 20,28 8,36 12,24 2,16 15,16" fill="#FFD93D" stroke="#FFC107" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="game-message" id="count-message">Click each star! Count: 0</div>
+          <div style="text-align:center; margin-top: 10px;"><button class="music-button" onclick="resetStars()">Reset</button></div>
+        </div>
+
+        <div class="game-card">
+          <div class="game-title">Find the shape!</div>
+          <div class="game-message" id="shape-prompt" style="font-size: 22px; margin-bottom: 12px;">Find the circle!</div>
+          <div class="shape-game-area" id="shape-game">
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="checkShape(this, 'circle')">
+              <circle cx="25" cy="25" r="22" fill="#FF6B9D" stroke="#333" stroke-width="2"/>
+            </svg>
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="checkShape(this, 'square')">
+              <rect x="5" y="5" width="40" height="40" fill="#4ECDC4" stroke="#333" stroke-width="2"/>
+            </svg>
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="checkShape(this, 'triangle')">
+              <polygon points="25,5 45,42 5,42" fill="#FFD93D" stroke="#333" stroke-width="2"/>
+            </svg>
+            <svg class="clickable-shape" width="50" height="50" viewBox="0 0 50 50" onclick="checkShape(this, 'star')">
+              <polygon points="25,5 31,20 47,20 34,30 39,46 25,36 11,46 16,30 3,20 19,20" fill="#B57EDC" stroke="#333" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-title">Music!</div>
+      <div class="music-controls">
+        <button class="music-button" onclick="toggleMusic()" id="music-btn">Play "Mary Had a Little Lamb"</button>
+      </div>
+    </div>
+
+
+    <script>
+      function popConfetti() {
+        const colors = ['#FF6B9D','#4ECDC4','#FFD93D','#B57EDC','#FFB347','#3DB37E'];
+        for (let i = 0; i < 50; i++) {
+          const c = document.createElement('div');
+          c.className = 'confetti';
+          c.style.left = Math.random() * 100 + 'vw';
+          c.style.top = '-20px';
+          c.style.background = colors[Math.floor(Math.random()*colors.length)];
+          c.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+          c.style.animation = 'confetti-fall ' + (2 + Math.random() * 2) + 's linear forwards';
+          c.style.animationDelay = Math.random() * 0.5 + 's';
+          document.body.appendChild(c);
+          setTimeout(() => c.remove(), 5000);
+        }
+      }
+
+      function bounceAnimals() {
+        const track = document.querySelector('.parade-track');
+        if (!track) return;
+        track.style.animation = 'none';
+        track.offsetHeight;
+        track.style.animation = '';
+        const svgs = track.querySelectorAll('svg');
+        svgs.forEach((svg, i) => {
+          svg.style.transition = 'transform 0.4s';
+          setTimeout(() => {
+            svg.style.transform = 'translateY(-30px)';
+            setTimeout(() => { svg.style.transform = 'translateY(0)'; }, 400);
+          }, i * 60);
+        });
+      }
+
+      let rainbowOn = false;
+      function rainbowBackground() {
+        const body = document.body;
+        if (rainbowOn) return;
+        rainbowOn = true;
+        const orig = body.style.background;
+        const colors = ['#FF6B9D','#FFB347','#FFD93D','#4ECDC4','#B57EDC','#FF6B9D'];
+        let i = 0;
+        const interval = setInterval(() => {
+          body.style.background = colors[i % colors.length];
+          body.style.transition = 'background 0.4s';
+          i++;
+        }, 400);
+        setTimeout(() => {
+          clearInterval(interval);
+          body.style.background = '';
+          rainbowOn = false;
+        }, 4000);
+      }
+
+      let audioCtx = null;
+      function getAudio() {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        return audioCtx;
+      }
+      function playTone(freq, duration, type, volume) {
+        const ctx = getAudio();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type || 'sine';
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(volume || 0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      }
+
+      function playBoop() {
+        playTone(440, 0.15, 'sine', 0.4);
+        setTimeout(() => playTone(660, 0.15, 'sine', 0.4), 100);
+      }
+
+      function spinName() {
+        const letters = document.querySelectorAll('.bubble-letter .text');
+        letters.forEach((t, i) => {
+          t.style.transition = 'transform 0.6s';
+          t.style.display = 'inline-block';
+          setTimeout(() => {
+            t.style.transform = 'rotate(360deg)';
+            setTimeout(() => {
+              t.style.transition = 'none';
+              t.style.transform = '';
+            }, 650);
+          }, i * 100);
+        });
+      }
+
+      function popBubble(el) {
+        playTone(800 + Math.random() * 400, 0.1, 'sine', 0.3);
+        el.style.transition = 'transform 0.2s, opacity 0.2s';
+        el.style.transform = 'scale(1.5)';
+        el.style.opacity = '0';
+        setTimeout(() => { el.style.visibility = 'hidden'; }, 200);
+        const remaining = Array.from(document.querySelectorAll('#bubble-game svg')).filter(s => s.style.opacity !== '0').length;
+        const msg = document.getElementById('bubble-message');
+        if (remaining === 0) {
+          msg.textContent = 'You popped them all! Yay!';
+          popConfetti();
+        } else {
+          msg.textContent = remaining + ' left to pop!';
+        }
+      }
+      function resetBubbles() {
+        document.querySelectorAll('#bubble-game svg').forEach(s => {
+          s.style.visibility = '';
+          s.style.opacity = '1';
+          s.style.transform = '';
+        });
+        document.getElementById('bubble-message').textContent = 'Pop them all!';
+      }
+
+      const colorPalette = ['#FF6B9D','#4ECDC4','#FFD93D','#B57EDC'];
+      function checkColor(el, color) {
+        const target = document.getElementById('color-target').style.background;
+        const targetHex = rgbToHex(target);
+        const msg = document.getElementById('color-message');
+        if (color.toUpperCase() === targetHex.toUpperCase()) {
+          msg.textContent = 'You got it!';
+          playTone(660, 0.1, 'sine', 0.3);
+          setTimeout(() => playTone(880, 0.15, 'sine', 0.3), 100);
+          setTimeout(() => {
+            const next = colorPalette[Math.floor(Math.random() * colorPalette.length)];
+            document.getElementById('color-target').style.background = next;
+            msg.textContent = 'Click the matching color!';
+          }, 1000);
+        } else {
+          msg.textContent = 'Try again!';
+          playTone(220, 0.2, 'sine', 0.3);
+        }
+      }
+      function rgbToHex(rgb) {
+        if (rgb.startsWith('#')) return rgb;
+        const m = rgb.match(/\d+/g);
+        if (!m) return rgb;
+        return '#' + m.slice(0, 3).map(n => parseInt(n).toString(16).padStart(2, '0')).join('');
+      }
+
+      let starCount = 0;
+      function countStar(el) {
+        if (el.dataset.clicked) return;
+        el.dataset.clicked = '1';
+        el.style.opacity = '0.4';
+        starCount++;
+        playTone(400 + starCount * 100, 0.15, 'sine', 0.3);
+        const total = document.querySelectorAll('#count-game svg').length;
+        const msg = document.getElementById('count-message');
+        if (starCount === total) {
+          msg.textContent = 'You counted all ' + total + ' stars!';
+          popConfetti();
+        } else {
+          msg.textContent = 'Click each star! Count: ' + starCount;
+        }
+      }
+      function resetStars() {
+        starCount = 0;
+        document.querySelectorAll('#count-game svg').forEach(s => {
+          s.dataset.clicked = '';
+          s.style.opacity = '1';
+        });
+        document.getElementById('count-message').textContent = 'Click each star! Count: 0';
+      }
+
+      const shapes = ['circle','square','triangle','star'];
+      let currentShape = 'circle';
+      function checkShape(el, shape) {
+        const msg = document.getElementById('shape-prompt');
+        if (shape === currentShape) {
+          msg.textContent = 'You found it!';
+          playTone(660, 0.1, 'sine', 0.3);
+          setTimeout(() => playTone(880, 0.15, 'sine', 0.3), 100);
+          setTimeout(() => {
+            currentShape = shapes[Math.floor(Math.random() * shapes.length)];
+            msg.textContent = 'Find the ' + currentShape + '!';
+          }, 1000);
+        } else {
+          msg.textContent = 'Not that one! Find the ' + currentShape + '!';
+          playTone(220, 0.2, 'sine', 0.3);
+        }
+      }
+
+      function playChord(freqs, duration, type, volume) {
+        const ctx = getAudio();
+        freqs.forEach(freq => {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = type || 'sine';
+          osc.frequency.value = freq;
+          gain.gain.setValueAtTime(0, ctx.currentTime);
+          gain.gain.linearRampToValueAtTime(volume || 0.15, ctx.currentTime + 0.05);
+          gain.gain.setValueAtTime(volume || 0.15, ctx.currentTime + duration - 0.1);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + duration);
+        });
+      }
+
+      const C_MAJOR  = [261.63, 329.63, 392.00];
+      const F_MAJOR  = [349.23, 440.00, 523.25];
+      const G_MAJOR  = [392.00, 493.88, 587.33];
+      const C_BASS   = 130.81;
+      const F_BASS   = 174.61;
+      const G_BASS   = 196.00;
+
+      const symphony = [
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 587.33, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 523.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 587.33, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 659.25, dur: 1.0, chord: C_MAJOR, bass: C_BASS },
+        { mel: 587.33, dur: 0.5, chord: G_MAJOR, bass: G_BASS },
+        { mel: 587.33, dur: 0.5, chord: G_MAJOR, bass: G_BASS },
+        { mel: 587.33, dur: 1.0, chord: G_MAJOR, bass: G_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 783.99, dur: 0.5, chord: G_MAJOR, bass: G_BASS },
+        { mel: 783.99, dur: 1.0, chord: G_MAJOR, bass: G_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 587.33, dur: 0.5, chord: F_MAJOR, bass: F_BASS },
+        { mel: 523.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 587.33, dur: 0.5, chord: G_MAJOR, bass: G_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 587.33, dur: 0.5, chord: G_MAJOR, bass: G_BASS },
+        { mel: 587.33, dur: 0.5, chord: G_MAJOR, bass: G_BASS },
+        { mel: 659.25, dur: 0.5, chord: C_MAJOR, bass: C_BASS },
+        { mel: 587.33, dur: 0.5, chord: G_MAJOR, bass: G_BASS },
+        { mel: 523.25, dur: 1.5, chord: C_MAJOR, bass: C_BASS }
+      ];
+
+      let musicPlaying = false;
+      let musicTimeouts = [];
+      function toggleMusic() {
+        const btn = document.getElementById('music-btn');
+        if (musicPlaying) {
+          musicPlaying = false;
+          musicTimeouts.forEach(t => clearTimeout(t));
+          musicTimeouts = [];
+          btn.textContent = 'Play "Mary Had a Little Lamb"';
+        } else {
+          musicPlaying = true;
+          btn.textContent = 'Stop music';
+          playMelody();
+        }
+      }
+      function playMelody() {
+        if (!musicPlaying) return;
+        let t = 0;
+        symphony.forEach(note => {
+          const timeout = setTimeout(() => {
+            if (!musicPlaying) return;
+            playTone(note.mel, note.dur * 0.9, 'triangle', 0.28);
+            playChord(note.chord, note.dur * 0.95, 'sine', 0.08);
+            playTone(note.bass, note.dur * 0.95, 'sine', 0.18);
+          }, t * 1000);
+          musicTimeouts.push(timeout);
+          t += note.dur;
+        });
+        const loopTimeout = setTimeout(() => {
+          if (musicPlaying) playMelody();
+        }, t * 1000 + 500);
+        musicTimeouts.push(loopTimeout);
+      }
+    </script>
+
+</body>
+</html>
